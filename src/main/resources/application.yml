@@ -1,0 +1,52 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: data_center
+  cache:
+    type: ehcache
+    ehcache.config: classpath:ehcache.xml
+server:
+  port: 8081
+logging:
+  config: classpath:logback-spring.xml
+  path: ./logs
+QRCode_image_dir: D:\\image\\
+
+
+---
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://127.0.0.1:3306/wxrrd?characterEncoding=utf-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+    username: root
+    password: root
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+#      初始化时建立物理连接的个数。初始化发生在显示调用init方法，或者第一次getConnection时 默认0
+    initial-size: 5
+#      最小连接池数量
+    min-idle: 5
+#      最大连接池数量 默认8
+    max-active: 100
+##      获取连接时最大等待时间，单位毫秒。配置了maxWait之后，缺省启用公平锁，并发效率会有所下降，如果需要可以通过配置useUnfairLock属性为true使用非公平锁
+    max-wait: 60000
+#     配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+    time-between-eviction-runs-millis: 60000
+#      配置一个连接在池中最小生存的时间，单位是毫秒
+    min-evictable-idle-time-millis: 300000
+    validation-query: SELECT 1
+#      建议配置为true，不影响性能，并且保证安全性。申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效
+    test-while-idle: true
+#      申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+    test-on-borrow: false
+#      归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+    test-on-return: false
+#    是否缓存preparedStatement，也就是PSCache。PSCache对支持游标的数据库性能提升巨大，比如说oracle。在mysql下建议关闭 默认false
+    poolPreparedStatements: false
+#      	要启用PSCache，必须配置大于0，当大于0时，poolPreparedStatements自动触发修改为true。在Druid中，不会存在Oracle下PSCache占用内存过多的问题，可以把这个数值配置大一些，比如说100
+    maxpoolpreparedstatementperconnectionsize: 20
+#   配置监控统计
+    filters: stat,wall
+http_type: https://
+ftp_server_domain: ms.wrcdn.com

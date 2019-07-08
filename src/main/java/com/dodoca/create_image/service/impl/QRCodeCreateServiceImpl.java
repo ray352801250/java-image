@@ -30,7 +30,7 @@ public class QRCodeCreateServiceImpl implements QRCodeCreateService {
     public String generateQRCodeImage(String QRCodeContent) {
         logger.info("generateQRCodeImage >>> QRCodeContent:{}", QRCodeContent);
         try {
-            String filePath = QRCodeImageDir + "111.png";
+            String filePath = QRCodeImageDir + "222.jpg";
             //根据具体业务设二维码名称和大小
             QRCodeGenerator.generateQRCodeImage(QRCodeContent, 350, 350, "jpg", filePath);
             return filePath;

@@ -90,7 +90,9 @@ public class QRCodeGenerator {
     public static void createPhotoAtQRCodeCenter(String content, int width, int height, String logoFile, String imgType, String filePath) throws Exception {
         BitMatrix bitMatrix = generateQRCode(content, width, height);
         BufferedImage bufferedImage = toBufferedImage(bitMatrix);
-        BufferedImage logo = ImageIO.read(new File(logoFile));
+        BufferedImage logoFileBufferedImageByPath = BufferedImageUtil.getBufferedImageByPath(logoFile);
+        BufferedImage logo = BufferedImageUtil.transferImgForRoundImage(true, logoFileBufferedImageByPath);
+        logo = BufferedImageUtil.resizeImage(bufferedImage.getWidth()/3, bufferedImage.getHeight()/3, logo);
         int imageWidth = logo.getWidth();
         int imageHeight = logo.getHeight();
         Graphics2D g = bufferedImage.createGraphics();

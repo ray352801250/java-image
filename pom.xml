@@ -70,6 +70,14 @@
             <version>1.2.47</version>
         </dependency>
 
+        <!-- 引入授权解析 -->
+        <dependency>
+            <groupId>com.xk72</groupId>
+            <artifactId>pherialize</artifactId>
+            <version>1.2.4</version>
+
+        </dependency>
+
     </dependencies>
 
     <build>

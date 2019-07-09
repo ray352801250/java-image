@@ -25,16 +25,13 @@ public class BufferedImageUtil {
         //创建一个不带透明色的对象作为背景图
         BufferedImage background = new BufferedImage(600, 950, BufferedImage.TYPE_INT_RGB);
         //读取微信头像图片到内存
-//        BufferedImage weChatAvatarBufferedImage = ImageIO.read(new File(weChatAvatarPath));
         BufferedImage weChatAvatarBufferedImage = getBufferedImageByPath(weChatAvatarPath);
         BufferedImage weChatAvatar1 = resizeImage(100, 100, weChatAvatarBufferedImage);
         BufferedImage weChatAvatar = transferImgForRoundImage(false, weChatAvatar1);
         //读取商品图片
-//        BufferedImage goodsImageBufferedImage = ImageIO.read(new File(goodsImagePath));
         BufferedImage goodsImageBufferedImage = getBufferedImageByPath(goodsImagePath);
         BufferedImage goodsImage = resizeImage(580, 580, goodsImageBufferedImage);
         //读取二维码图片到内存
-//        BufferedImage qrCodeBufferedImage = ImageIO.read(new File(qrCodePath));
         BufferedImage qrCodeBufferedImage = getBufferedImageByPath(qrCodePath);
         BufferedImage qrCode = resizeImage(132, 132, qrCodeBufferedImage);
         Graphics2D g = background.createGraphics();
@@ -48,7 +45,6 @@ public class BufferedImageUtil {
         g.setColor(Color.black);
         g.setFont(new Font("宋体", Font.PLAIN, 28));
         directAxis += 38;
-        logger.info("goodsTile: " + goodsTile.length());
         if (goodsTile.length() >= 22) {
             String subTile1 = goodsTile.substring(0, 22);
             String subTile2 = goodsTile.substring(22);
@@ -62,7 +58,13 @@ public class BufferedImageUtil {
         g.setFont(new Font("微软雅黑", Font.PLAIN, 32));
         g.setColor(Color.RED);
         g.drawString(goodsPrice, 20, directAxis);
-        directAxis += 72;
+        directAxis += 10;
+//        if (true) {
+//            BufferedImage manjian = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\image\\manjian.png");
+//            g.drawImage(manjian, 20 , directAxis, manjian.getWidth(), manjian.getHeight(), null);
+//        }
+        //二维码具体顶端的距离
+        directAxis = 746;
         g.drawImage(weChatAvatar, 24, directAxis + 30, weChatAvatar.getWidth(), weChatAvatar.getHeight(), null);
         g.setFont(new Font("宋体", Font.PLAIN, 28));
         g.setColor(Color.black);
@@ -70,7 +72,6 @@ public class BufferedImageUtil {
         g.setFont(new Font("宋体", Font.PLAIN, 24));
         g.setColor(Color.gray);
         g.drawString(message02, 44 + weChatAvatar.getWidth(), directAxis + 59 +  weChatAvatar.getHeight()/2);
-        logger.info("qrCode y: " + directAxis);
         g.drawImage(qrCode, 426, directAxis, qrCode.getWidth(), qrCode.getHeight(), null);
         directAxis += qrCode.getHeight();
         g.setFont(new Font("宋体", Font.PLAIN, 22));

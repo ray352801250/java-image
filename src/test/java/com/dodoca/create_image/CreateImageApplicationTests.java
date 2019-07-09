@@ -56,7 +56,7 @@ public class CreateImageApplicationTests {
 //                "Mheiihoo魅护山茶弹力美肌沐浴露  300ml", "￥49.00", "D:\\image\\overlap7.jpg");
         BufferedImageUtil.overlapImage("http://thirdwx.qlogo.cn/mmopen/vi_32/ZqYOBqC5fPibylCwdzwZtQx0ibibS9IQFWb5nV2jS7qo0wic6vtzUJAzzlJ8Tia1LtbKx7Tnf9VJxK2sLIZ4P2Ir1ZQ/132", "https://ms.wrcdn.com/2019/06/15/FkmDAQlZdaeFn6FgRLaaXkIx4BZY.jpg",
                 "D:\\image\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
-                "MY GUEST男士冰丝隐形袜 5双装", "￥49.00", "D:\\image\\overlap8.jpg");
+                "MY GUEST男士冰丝隐形袜 5双装", "￥49.00", "D:\\image\\overlap9.jpg");
     }
 
     /**

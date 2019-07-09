@@ -1,5 +1,6 @@
 package com.dodoca.create_image.utils;
 
+import com.dodoca.create_image.constants.ActivityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.imageio.ImageIO;
@@ -9,6 +10,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+
+import static com.dodoca.create_image.constants.ActivityType.PINTUAN;
+import static com.dodoca.create_image.constants.ActivityType.SECKILL;
 
 /**
  * @description: 处理图片和成
@@ -21,7 +25,7 @@ public class BufferedImageUtil {
 
     public static String overlapImage(String weChatAvatarPath, String goodsImagePath,
                                       String qrCodePath, String message01, String message02, String goodsTile,
-                                      String goodsPrice, String outPutPath) throws IOException {
+                                      String goodsPrice, String outPutPath, String activity) throws IOException {
         //创建一个不带透明色的对象作为背景图
         BufferedImage background = new BufferedImage(600, 950, BufferedImage.TYPE_INT_RGB);
         //读取微信头像图片到内存
@@ -59,10 +63,18 @@ public class BufferedImageUtil {
         g.setColor(Color.RED);
         g.drawString(goodsPrice, 20, directAxis);
         directAxis += 10;
-//        if (true) {
-//            BufferedImage manjian = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\image\\manjian.png");
-//            g.drawImage(manjian, 20 , directAxis, manjian.getWidth(), manjian.getHeight(), null);
-//        }
+        if (activity != null) {
+            BufferedImage activityImage = null;
+            switch (activity){
+                case SECKILL :
+                    activityImage = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\images\\miaosha.png");
+                case PINTUAN :
+                    activityImage = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\images\\pintuan.png");
+            }
+            if (activityImage != null) {
+                g.drawImage(activityImage, 20 , directAxis, activityImage.getWidth(), activityImage.getHeight(), null);
+            }
+        }
         //二维码具体顶端的距离
         directAxis = 746;
         g.drawImage(weChatAvatar, 24, directAxis + 30, weChatAvatar.getWidth(), weChatAvatar.getHeight(), null);

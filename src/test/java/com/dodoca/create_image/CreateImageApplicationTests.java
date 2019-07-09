@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.time.LocalDateTime;
+import static com.dodoca.create_image.constants.ActivityType.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -51,12 +51,12 @@ public class CreateImageApplicationTests {
      */
     @Test
     public void testOverlapImage() throws IOException {
-//        BufferedImageUtil.overlapImage("D:\\image\\123.jpg", "D:\\image\\goods.jpg",
-//                "D:\\image\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
-//                "Mheiihoo魅护山茶弹力美肌沐浴露  300ml", "￥49.00", "D:\\image\\overlap7.jpg");
+//        BufferedImageUtil.overlapImage("D:\\images\\123.jpg", "D:\\images\\goods.jpg",
+//                "D:\\images\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
+//                "Mheiihoo魅护山茶弹力美肌沐浴露  300ml", "￥49.00", "D:\\images\\overlap7.jpg");
         BufferedImageUtil.overlapImage("http://thirdwx.qlogo.cn/mmopen/vi_32/ZqYOBqC5fPibylCwdzwZtQx0ibibS9IQFWb5nV2jS7qo0wic6vtzUJAzzlJ8Tia1LtbKx7Tnf9VJxK2sLIZ4P2Ir1ZQ/132", "https://ms.wrcdn.com/2019/06/15/FkmDAQlZdaeFn6FgRLaaXkIx4BZY.jpg",
                 "D:\\image\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
-                "MY GUEST男士冰丝隐形袜 5双装", "￥49.00", "D:\\image\\overlap9.jpg");
+                "MY GUEST男士冰丝隐形袜 5双装", "￥49.00", "D:\\image\\overlap9.jpg", null);
     }
 
     /**
@@ -66,7 +66,7 @@ public class CreateImageApplicationTests {
     @Test
     public void testCreatePhotoAtQRCodeCenter() throws Exception {
         QRCodeGenerator.createPhotoAtQRCodeCenter("https://shop13290509.wxrrd.com/goods/120301566",
-                300 ,300 , "D:\\image\\logo1.jpg", "jpg", "D:\\image\\ten.jpg");
+                300 ,300 , "D:\\images\\logo1.jpg", "jpg", "D:\\images\\ten.jpg");
     }
 
     /**
@@ -74,11 +74,11 @@ public class CreateImageApplicationTests {
      */
     @Test
     public void testTransferImgForRoundImage() throws IOException {
-        BufferedImage bufferedImageByPath = BufferedImageUtil.getBufferedImageByPath("D:\\image\\123.jpg");
+        BufferedImage bufferedImageByPath = BufferedImageUtil.getBufferedImageByPath("D:\\images\\123.jpg");
         BufferedImage bufferedImage = BufferedImageUtil.transferImgForRoundImage(true, bufferedImageByPath);
         if (bufferedImage != null) {
             System.out.println("===");
-            ImageIO.write(bufferedImage, "JPG", new File("D:\\image\\456.jpg"));
+            ImageIO.write(bufferedImage, "JPG", new File("D:\\images\\456.jpg"));
         }
     }
 

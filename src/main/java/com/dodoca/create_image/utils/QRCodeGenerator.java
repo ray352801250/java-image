@@ -38,7 +38,7 @@ public class QRCodeGenerator {
         // 设置二维码纠错能力级别为H（最高）
         hints.put(EncodeHintType.ERROR_CORRECTION, ErrorCorrectionLevel.H);
 //        BitMatrix encode = new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
-//        BufferedImage image = MatrixToImageWriter.toBufferedImage(encode);
+//        BufferedImage images = MatrixToImageWriter.toBufferedImage(encode);
         return new MultiFormatWriter().encode(content, BarcodeFormat.QR_CODE, width, height, hints);
     }
 
@@ -73,7 +73,7 @@ public class QRCodeGenerator {
         // 不设置缓存
         response.setHeader("Pragma", "no-cache");
         response.setDateHeader("Expires", 0);
-        response.setContentType("image/png");
+        response.setContentType("images/png");
         MatrixToImageWriter.writeToStream(bitMatrix, "png", response.getOutputStream());
     }
 

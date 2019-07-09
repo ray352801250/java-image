@@ -23,7 +23,7 @@ public class BufferedImageUtil {
                                       String qrCodePath, String message01, String message02, String goodsTile,
                                       String goodsPrice, String outPutPath) throws IOException {
         //创建一个不带透明色的对象作为背景图
-        BufferedImage background = new BufferedImage(415, 750, BufferedImage.TYPE_INT_RGB);
+        BufferedImage background = new BufferedImage(600, 950, BufferedImage.TYPE_INT_RGB);
         //读取微信头像图片到内存
 //        BufferedImage weChatAvatarBufferedImage = ImageIO.read(new File(weChatAvatarPath));
         BufferedImage weChatAvatarBufferedImage = getBufferedImageByPath(weChatAvatarPath);
@@ -32,32 +32,49 @@ public class BufferedImageUtil {
         //读取商品图片
 //        BufferedImage goodsImageBufferedImage = ImageIO.read(new File(goodsImagePath));
         BufferedImage goodsImageBufferedImage = getBufferedImageByPath(goodsImagePath);
-        BufferedImage goodsImage = resizeImage(415, 400, goodsImageBufferedImage);
+        BufferedImage goodsImage = resizeImage(580, 580, goodsImageBufferedImage);
         //读取二维码图片到内存
 //        BufferedImage qrCodeBufferedImage = ImageIO.read(new File(qrCodePath));
-        BufferedImage qrCodeBufferedImage = getBufferedImageByPath(goodsImagePath);
-        BufferedImage qrCode = resizeImage(135, 135, qrCodeBufferedImage);
+        BufferedImage qrCodeBufferedImage = getBufferedImageByPath(qrCodePath);
+        BufferedImage qrCode = resizeImage(132, 132, qrCodeBufferedImage);
         Graphics2D g = background.createGraphics();
         // 抗锯齿
         g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         g.setBackground(Color.WHITE);
         g.fillRect(0, 0, background.getWidth(), background.getHeight());
-        int directAxis = 20;
-        g.drawImage(goodsImage, 0, directAxis, goodsImage.getWidth(), goodsImage.getHeight(), null);
+        int directAxis = 11;
+        g.drawImage(goodsImage, 10, directAxis, goodsImage.getWidth(), goodsImage.getHeight(), null);
         directAxis += goodsImage.getHeight();
         g.setColor(Color.black);
-        g.setFont(new Font("微软雅黑", Font.BOLD, 16));
-        directAxis += 10;
-        g.drawString(goodsTile, 20, directAxis);
-        directAxis += 30;
+        g.setFont(new Font("宋体", Font.PLAIN, 28));
+        directAxis += 38;
+        logger.info("goodsTile: " + goodsTile.length());
+        if (goodsTile.length() >= 22) {
+            String subTile1 = goodsTile.substring(0, 22);
+            String subTile2 = goodsTile.substring(22);
+            g.drawString(subTile1, 22, directAxis);
+            directAxis += 38;
+            g.drawString(subTile2, 22, directAxis);
+        }else {
+            g.drawString(goodsTile, 22, directAxis);
+        }
+        directAxis += 45;
+        g.setFont(new Font("微软雅黑", Font.PLAIN, 32));
         g.setColor(Color.RED);
         g.drawString(goodsPrice, 20, directAxis);
-        directAxis += 80;
-        g.drawImage(weChatAvatar, 20, directAxis, weChatAvatar.getWidth(), weChatAvatar.getHeight(), null);
+        directAxis += 72;
+        g.drawImage(weChatAvatar, 24, directAxis + 30, weChatAvatar.getWidth(), weChatAvatar.getHeight(), null);
+        g.setFont(new Font("宋体", Font.PLAIN, 28));
         g.setColor(Color.black);
-        g.drawString(message01, 25 + weChatAvatar.getWidth(), directAxis + weChatAvatar.getHeight()/2 - 20);
-        g.drawString(message02, 25 + weChatAvatar.getWidth(), directAxis + weChatAvatar.getHeight()/2 + 5);
-        g.drawImage(qrCode, background.getWidth() - 155, directAxis - 10, qrCode.getWidth(), qrCode.getHeight(), null);
+        g.drawString(message01, 44 + weChatAvatar.getWidth(), directAxis + 24 +  weChatAvatar.getHeight()/2);
+        g.setFont(new Font("宋体", Font.PLAIN, 24));
+        g.setColor(Color.gray);
+        g.drawString(message02, 44 + weChatAvatar.getWidth(), directAxis + 59 +  weChatAvatar.getHeight()/2);
+        logger.info("qrCode y: " + directAxis);
+        g.drawImage(qrCode, 426, directAxis, qrCode.getWidth(), qrCode.getHeight(), null);
+        directAxis += qrCode.getHeight();
+        g.setFont(new Font("宋体", Font.PLAIN, 22));
+        g.drawString("长按识别二维码", 415, directAxis + 30);
         g.dispose();
         ImageIO.write(background, "jpg", new File(outPutPath));
         return outPutPath;

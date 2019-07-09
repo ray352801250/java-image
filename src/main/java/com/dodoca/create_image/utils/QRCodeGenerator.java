@@ -91,8 +91,8 @@ public class QRCodeGenerator {
         BitMatrix bitMatrix = generateQRCode(content, width, height);
         BufferedImage bufferedImage = toBufferedImage(bitMatrix);
         BufferedImage logoFileBufferedImageByPath = BufferedImageUtil.getBufferedImageByPath(logoFile);
-        BufferedImage logo = BufferedImageUtil.transferImgForRoundImage(true, logoFileBufferedImageByPath);
-        logo = BufferedImageUtil.resizeImage(bufferedImage.getWidth()/3, bufferedImage.getHeight()/3, logo);
+        BufferedImage logo1 = BufferedImageUtil.resizeImage(bufferedImage.getWidth()/3, bufferedImage.getHeight()/3, logoFileBufferedImageByPath);
+        BufferedImage logo = BufferedImageUtil.transferImgForRoundImage(true, logo1);
         int imageWidth = logo.getWidth();
         int imageHeight = logo.getHeight();
         Graphics2D g = bufferedImage.createGraphics();

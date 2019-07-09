@@ -51,9 +51,12 @@ public class CreateImageApplicationTests {
      */
     @Test
     public void testOverlapImage() throws IOException {
-        BufferedImageUtil.overlapImage("D:\\image\\456.jpg", "D:\\image\\goods.jpg",
-                "D:\\image\\thirteen.jpg", "我是小月亮", "我为一哥悠购代言",
-                "Mheiihoo魅护山茶弹力美肌沐浴露  300ml", "￥ 49.00", "D:\\image\\overlap3.jpg");
+//        BufferedImageUtil.overlapImage("D:\\image\\123.jpg", "D:\\image\\goods.jpg",
+//                "D:\\image\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
+//                "Mheiihoo魅护山茶弹力美肌沐浴露  300ml", "￥49.00", "D:\\image\\overlap7.jpg");
+        BufferedImageUtil.overlapImage("http://thirdwx.qlogo.cn/mmopen/vi_32/ZqYOBqC5fPibylCwdzwZtQx0ibibS9IQFWb5nV2jS7qo0wic6vtzUJAzzlJ8Tia1LtbKx7Tnf9VJxK2sLIZ4P2Ir1ZQ/132", "https://ms.wrcdn.com/2019/06/15/FkmDAQlZdaeFn6FgRLaaXkIx4BZY.jpg",
+                "D:\\image\\ten.jpg", "我是小月亮", "我为一哥悠购代言",
+                "MY GUEST男士冰丝隐形袜 5双装", "￥49.00", "D:\\image\\overlap8.jpg");
     }
 
     /**
@@ -62,8 +65,8 @@ public class CreateImageApplicationTests {
      */
     @Test
     public void testCreatePhotoAtQRCodeCenter() throws Exception {
-        QRCodeGenerator.createPhotoAtQRCodeCenter("https://shop13290509.wxrrd.com/goods/121509756",
-                300 ,300 , "D:\\image\\logo1.jpg", "jpg", "D:\\image\\fourteen.jpg");
+        QRCodeGenerator.createPhotoAtQRCodeCenter("https://shop13290509.wxrrd.com/goods/120301566",
+                300 ,300 , "D:\\image\\logo1.jpg", "jpg", "D:\\image\\ten.jpg");
     }
 
     /**

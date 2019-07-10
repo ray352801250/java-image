@@ -28,4 +28,6 @@ public class GenerateQRCodeController {
         qrCodeCreateServiceImpl.generateQRCodeStream(content, response);
     }
 
+
+
 }

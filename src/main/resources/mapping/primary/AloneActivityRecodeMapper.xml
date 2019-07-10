@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dodoca.create_image.dao.AloneActivityRecodeMapper">
+  <resultMap id="BaseResultMap" type="com.dodoca.create_image.pojo.AloneActivityRecode">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="merchant_id" jdbcType="INTEGER" property="merchantId" />
+    <result column="shop_id" jdbcType="INTEGER" property="shopId" />
+    <result column="goods_id" jdbcType="INTEGER" property="goodsId" />
+    <result column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="stock_lock" jdbcType="INTEGER" property="stockLock" />
+    <result column="alone_id" jdbcType="INTEGER" property="aloneId" />
+    <result column="act_type" jdbcType="VARCHAR" property="actType" />
+    <result column="created_at" jdbcType="TIMESTAMP" property="createdAt" />
+    <result column="finish_at" jdbcType="TIMESTAMP" property="finishAt" />
+    <result column="updated_at" jdbcType="TIMESTAMP" property="updatedAt" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, merchant_id, shop_id, goods_id, product_id, stock_lock, alone_id, act_type, created_at, 
+    finish_at, updated_at
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from alone_activity_recode
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from alone_activity_recode
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.dodoca.create_image.pojo.AloneActivityRecode">
+    insert into alone_activity_recode (id, merchant_id, shop_id, 
+      goods_id, product_id, stock_lock, 
+      alone_id, act_type, created_at, 
+      finish_at, updated_at)
+    values (#{id,jdbcType=INTEGER}, #{merchantId,jdbcType=INTEGER}, #{shopId,jdbcType=INTEGER}, 
+      #{goodsId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{stockLock,jdbcType=INTEGER}, 
+      #{aloneId,jdbcType=INTEGER}, #{actType,jdbcType=VARCHAR}, #{createdAt,jdbcType=TIMESTAMP}, 
+      #{finishAt,jdbcType=TIMESTAMP}, #{updatedAt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.dodoca.create_image.pojo.AloneActivityRecode">
+    insert into alone_activity_recode
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="merchantId != null">
+        merchant_id,
+      </if>
+      <if test="shopId != null">
+        shop_id,
+      </if>
+      <if test="goodsId != null">
+        goods_id,
+      </if>
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="stockLock != null">
+        stock_lock,
+      </if>
+      <if test="aloneId != null">
+        alone_id,
+      </if>
+      <if test="actType != null">
+        act_type,
+      </if>
+      <if test="createdAt != null">
+        created_at,
+      </if>
+      <if test="finishAt != null">
+        finish_at,
+      </if>
+      <if test="updatedAt != null">
+        updated_at,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="merchantId != null">
+        #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null">
+        #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="stockLock != null">
+        #{stockLock,jdbcType=INTEGER},
+      </if>
+      <if test="aloneId != null">
+        #{aloneId,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null">
+        #{actType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishAt != null">
+        #{finishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.dodoca.create_image.pojo.AloneActivityRecode">
+    update alone_activity_recode
+    <set>
+      <if test="merchantId != null">
+        merchant_id = #{merchantId,jdbcType=INTEGER},
+      </if>
+      <if test="shopId != null">
+        shop_id = #{shopId,jdbcType=INTEGER},
+      </if>
+      <if test="goodsId != null">
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null">
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="stockLock != null">
+        stock_lock = #{stockLock,jdbcType=INTEGER},
+      </if>
+      <if test="aloneId != null">
+        alone_id = #{aloneId,jdbcType=INTEGER},
+      </if>
+      <if test="actType != null">
+        act_type = #{actType,jdbcType=VARCHAR},
+      </if>
+      <if test="createdAt != null">
+        created_at = #{createdAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="finishAt != null">
+        finish_at = #{finishAt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatedAt != null">
+        updated_at = #{updatedAt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.dodoca.create_image.pojo.AloneActivityRecode">
+    update alone_activity_recode
+    set merchant_id = #{merchantId,jdbcType=INTEGER},
+      shop_id = #{shopId,jdbcType=INTEGER},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      product_id = #{productId,jdbcType=INTEGER},
+      stock_lock = #{stockLock,jdbcType=INTEGER},
+      alone_id = #{aloneId,jdbcType=INTEGER},
+      act_type = #{actType,jdbcType=VARCHAR},
+      created_at = #{createdAt,jdbcType=TIMESTAMP},
+      finish_at = #{finishAt,jdbcType=TIMESTAMP},
+      updated_at = #{updatedAt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

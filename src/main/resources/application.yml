@@ -11,6 +11,9 @@ server:
 logging:
   config: classpath:logback-spring.xml
   path: ./logs
+mybatis:
+  mapper-locations: classpath:mapping/*/*Mapper.xml
+  type-aliases-package: com.dodoca.create_image.pojo
 QRCode_image_dir: D:\\image\\
 
 

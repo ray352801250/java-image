@@ -3,13 +3,18 @@ package com.dodoca.create_image.utils;
 import com.dodoca.create_image.constants.ActivityType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.ClassUtils;
+import org.springframework.util.ResourceUtils;
+
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.net.URL;
+import java.net.URLDecoder;
 
 import static com.dodoca.create_image.constants.ActivityType.PINTUAN;
 import static com.dodoca.create_image.constants.ActivityType.SECKILL;
@@ -64,12 +69,18 @@ public class BufferedImageUtil {
         g.drawString(goodsPrice, 20, directAxis);
         directAxis += 10;
         if (activity != null) {
-            BufferedImage activityImage = null;
+            BufferedImage activityImage;
+            String basePath = ResourceUtils.getURL("classpath:").getPath();
+            logger.info("basePath : " + basePath);
             switch (activity){
                 case SECKILL :
-                    activityImage = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\images\\miaosha.png");
+                    activityImage = getBufferedImageByPath(basePath + "static/images/miaosha.png");
+                    break;
                 case PINTUAN :
-                    activityImage = getBufferedImageByPath("D:\\mycode\\create_image\\src\\main\\resources\\static\\images\\pintuan.png");
+                    activityImage = getBufferedImageByPath(basePath + "static/images/pintuan.png");
+                    break;
+                default:
+                    activityImage = null;
             }
             if (activityImage != null) {
                 g.drawImage(activityImage, 20 , directAxis, activityImage.getWidth(), activityImage.getHeight(), null);
@@ -164,6 +175,15 @@ public class BufferedImageUtil {
             return loadImageUrl(imagePath);
         }
          return loadImageLocal(imagePath);
+    }
+
+    public static void main(String[] args) throws FileNotFoundException {
+        String path = ClassUtils.getDefaultClassLoader().getResource("").getPath();
+
+        String path2 = ResourceUtils.getURL("classpath:").getPath();
+        System.out.println("path: " + path);
+        System.out.println("path2: " + path2);
+
     }
 
 }
